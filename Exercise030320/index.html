@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+Opgave d & e
+-->
+<html>
+    <head>
+        <title>Opgave d & e</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        Opgave b:<br>
+        <div id="assignmentB"></div>
+        <br>
+        <br>
+        Opgave c:<br>
+        <div id="assignmentC"></div>
+        <br>
+        <input id="assignmentE" type="button" value="Click to Filter A" />
+        <br>
+        <input id="reset" type="button" value="Click to reset table" />
+
+        <script>
+           // Opgave 4.b
+            var names = ["Malthe", "Frederik", "Soren", "Allan", "Alfons"];
+
+            let refMap = '<nav>' + names.map(n => '<a href="">' + n + '</a> ').join("") + '</nav>'
+
+            console.log("------Opgave 4.b------")
+            console.log(refMap)
+            console.log()
+
+
+            // Opgave 4.c
+
+            console.log("------Opgave 4.c------")
+
+            var names2 = [
+                {name:"Malthe",phone:"1234567"},
+                {name: "Frederik",phone: "675843"}, 
+                {name: "Soren", phone: "98547"},
+                {name: "Allan", phone: "79345"},
+                {name: "Alfons", phone: "79345231"}
+            ];
+
+            function namesToTable(names) {
+                let tableInfo = names.map(names => `<tr><td>${names.name}</td><td>${names.phone}</td>`);
+                tableInfo.unshift("<table id=\"namestable\"<table class=\"table\"><tr><th>Name</th><th>Phone</th>");
+                tableInfo.push("</table>");
+                return tableInfo.join('');
+            }
+
+            console.log(namesToTable(names2))
+
+            document.getElementById("assignmentB").innerHTML = refMap;
+            document.getElementById("assignmentC").innerHTML = namesToTable(names2);
+            
+            function assignmentE() {
+                document.getElementById("assignmentC").innerHTML = namesToTable(names2.filter(name => name.name.toLowerCase().includes("a")));
+            }
+
+            document.getElementById("assignmentE").addEventListener("click", assignmentE);
+            document.getElementById("reset").addEventListener("click", function () {
+                document.getElementById("assignmentC").innerHTML = namesToTable(names2);
+            });
+        </script>
+    </body>
+</html>
